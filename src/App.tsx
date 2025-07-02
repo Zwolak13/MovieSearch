@@ -1,3 +1,5 @@
+import Top from "./components/Top"
+import Trendings from "./components/Trendings"
 
 
 function App() {
@@ -5,7 +7,8 @@ function App() {
 
   return (
     <>
-      
+    <Top />
+    <Trendings />
     </>
   )
 }

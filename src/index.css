@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+
+@theme {
+  --animate-lightRight: lightRight 5s ease-in-out infinite;
+  @keyframes lightRight {
+    0%,
+    100% {
+      transform: rotate(-70deg);
+    }
+    50% {
+      transform: rotate(-20deg);
+    }
+  }
+
+  --animate-lightLeft: lightLeft 5s ease-in-out infinite;
+  @keyframes lightLeft {
+    0%,
+    100% {
+      transform: rotate(70deg);
+    }
+    50% {
+      transform: rotate(20deg);
+    }
+  }
+}
+
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+    z-index: -1;
+}
+
+body {
+            font-family: 'Orbitron', monospace;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+
+.no-scrollbar {
+  scrollbar-width: none;         /* Firefox */
+  -ms-overflow-style: none;      /* Internet Explorer i Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;                 /* Chrome, Safari, Opera */
+}
+
+
+@layer utilities {
+  .vhs-effect {
+    position: relative;
+  }
+
+  .vhs-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
+  }
+}
