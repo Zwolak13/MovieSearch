@@ -1,10 +1,28 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 
+type Movie = {
+  id: number;
+  title: string;
+  year: number;
+  rating: number;
+  description: string;
+  genre: string[];
+  poster: string;
+};
+
+type CarouselProps = {
+  data: Movie[];
+  label: string;
+};
+
+
+
+
 const TRANSITION_MS = 500; 
 const SLIDE_WIDTH = 300;   
 const GAP = 16;           
 
-export default function Carousel({ data, label}) {
+export default function Carousel({ data, label}:CarouselProps) {
   const [visibleSlides, setVisibleSlides] = useState(4);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
