@@ -1,5 +1,6 @@
 import Carousel from "./Carousel";
-import mockedMovies from '../mockedData/movieData.js'
+// @ts-expect-error - mocked data is js file
+import mockedMovies from "../mockedData/movieData";
 
 export default function Trendings(){
     return (
