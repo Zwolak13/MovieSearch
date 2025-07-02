@@ -2,7 +2,7 @@ export default function Top(){
 
     return (
         <>
-        <div className="w-[100vw] h-[70vh] text-5xl bg-black/30 flex justify-center items-center flex-col relative vhs-effect"
+        <div className="w-[100vw] h-[70vh] text-5xl bg-black/30 flex justify-center items-center flex-col relative vhs-effect overflow-hidden"
          style={{
     background: "radial-gradient(ellipse at center, rgba(255, 0, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 70%)",
             }}>
@@ -10,7 +10,7 @@ export default function Top(){
             <div className=" z-20 flex items-center bg-black border-2 border-[#ff00ff] shadow-[0_0_20px_rgba(255,0,255,0.5)] rounded-md px-4">
                 <input
                     type="text"
-                    className="bg-black text-white flex-grow outline-none border-none"
+                    className="bg-black w-50 sm:w-full text-white flex-grow outline-none border-none"
                 />
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ export default function Top(){
                 </svg>
             </div>
             <div
-                className="absolute h-[200%] bottom-0 right-[20%] w-[10%] origin-bottom animate-lightRight z-10"
+                className="absolute h-[100%] sm:h-[200%] bottom-0 right-[20%] w-[10%] origin-bottom animate-lightRight z-10 "
                 style={{
                     backgroundImage:
                     'radial-gradient(circle, rgba(255,0,255,0.2) 0%, rgba(255,0,255,0) 70%)',
@@ -37,7 +37,7 @@ export default function Top(){
                 }}>
             </div>
             <div
-                className="absolute h-[200%] bottom-0 left-[20%] w-[10%] origin-bottom animate-lightLeft z-10"
+                className="absolute h-[100%] sm:h-[200%] bottom-0 left-[20%] w-[10%] origin-bottom animate-lightLeft z-10"
                 style={{
                     backgroundImage:
                     'radial-gradient(circle, rgba(255,0,255,0.2) 0%, rgba(255,0,255,0) 70%)',

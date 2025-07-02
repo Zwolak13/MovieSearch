@@ -1,5 +1,6 @@
 import Top from "./components/Top"
-import Trendings from "./components/Trendings"
+import Body from "./components/Body"
+import { MovieProvider } from "./context/MovieContext"
 
 
 function App() {
@@ -7,8 +8,10 @@ function App() {
 
   return (
     <>
-    <Top />
-    <Trendings />
+    <MovieProvider >
+      <Top />
+      <Body />
+    </MovieProvider>
     </>
   )
 }
