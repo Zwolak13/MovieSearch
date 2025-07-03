@@ -2,7 +2,7 @@
 import { useMultiSearchForMoviesTV } from "../hooks/useMultiSearchForMovies";
 import MoviePoster from "./MoviePoster";
 import { useNavigate } from "react-router-dom";
-import PageLayout from "./PageLayout";
+import PageLayout from "./SidePageLayout";
 import ErrorMessage from "./ErrorMessage";
 
 type SearchProps = {

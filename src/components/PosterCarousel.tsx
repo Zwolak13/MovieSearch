@@ -115,7 +115,7 @@ export default function PosterCarousel({ data, label, error, isLoading }:Carouse
         {label}
       </h2>
 
-      <div className="relative w-75 sm:w-full ">
+      <div className="relative w-75 sm:w-full">
         {isLoading && <div><h2 className='text-3xl'>Looking for {label} Movies...</h2></div>}
         {error && <ErrorMessage error={error} />}
         {!isLoading && !error && <>
@@ -134,7 +134,7 @@ export default function PosterCarousel({ data, label, error, isLoading }:Carouse
       ▶
         </button>
 
-        <div className="overflow-hidden">
+        <div>
           <div
             ref={trackRef}
             className="flex"

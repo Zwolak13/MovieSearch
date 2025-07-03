@@ -1,7 +1,7 @@
 import { useSingleMovieInfo } from "../hooks/useSingleMovieInfo"
 import SingleMoviePoster from "./SingleMoviePoster";
 import CrewCarousel from "./CrewCarousel";
-import PageLayout from "./PageLayout";
+import PageLayout from "./SidePageLayout";
 import ErrorMessage from "./ErrorMessage";
 
 
