@@ -1,12 +1,16 @@
-import type {SearchType} from '../types/SearchType'
 import { useState } from 'react';
 
-export default function Top({keyword, setKeyword}: SearchType){
+interface TopProps {
+  onSearch: (keyword: string) => void;
+}
+
+export default function Top({ onSearch }: TopProps){
     const [input, setInput] = useState('');
 
     function handleSubmit(){
-            setKeyword(input);
-            console.log(keyword);
+        if (input.trim()) {
+            onSearch(input.trim());
+        }
     };
     function handleChange(e:React.ChangeEvent<HTMLInputElement>){
         setInput(e.target.value);

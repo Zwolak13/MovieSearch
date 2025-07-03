@@ -1,25 +1,21 @@
-import Top from "./components/Top"
-import Body from "./components/Body"
-import Search from "./components/Search"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import SearchPage from './pages/SearchPage';
+import MovieDetailsPage from './pages/MovieDetailsPage.tsx';
 
-import { useState } from "react";
 
 
 function App() {
 
 
-  const [moveId, setMovieId] = useState('');
-
   return (
-    <>
-      {keyword === "" ? 
-      <>
-        <Top keyword={keyword} setKeyword={setKeyword}/>
-        <Body />
-      </>
-      : 
-        <Search keyword={keyword} setKeyword={setKeyword}/>}
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search/:keyword" element={<SearchPage />} />
+        <Route path="/movie/:movieId" element={<MovieDetailsPage />} />
+      </Routes>
+    </Router>
   )
 }
 

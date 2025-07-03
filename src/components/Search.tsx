@@ -1,34 +1,44 @@
-import type { SearchType } from "../types/SearchType"
+
 import { useMultiSearchForMoviesTV } from "../hooks/useMultiSearchForMovies";
-import { IMAGE_URL } from "../hooks/config";
 import MoviePoster from "./MoviePoster";
+import { useNavigate } from "react-router-dom";
+import PageLayout from "./PageLayout";
+import ErrorMessage from "./ErrorMessage";
 
-export default function Search({keyword, setKeyword}: SearchType){
+type SearchProps = {
+  keyword: string;
+};
+
+export default function Search({keyword}: SearchProps){
     const { data, isLoading, error } = useMultiSearchForMoviesTV(keyword);
+    const navigate = useNavigate();
 
-    console.log(data);
+    const handleMovieClick = (movieId: string) => {
+    navigate(`/movie/${movieId}`);
+    };
 
-    return (
-        <>
-        <div className=" w-full h-15 bg-black/50 vhs-effect px-8 flex items-center">
-            <svg 
-            className="w-12  h-12 text-white stroke-current stroke-2"
-            viewBox="0 0 24 24" 
-            fill="none"
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-            onClick={() => setKeyword('')}
-            >
-            <path d="M6 8L2 12L6 16"/>
-            <path d="M2 12H22"/>
-            </svg>
-            <h1 className="text-3xl pl-8">Search result - {keyword}</h1>
-        </div>
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 justify-items-center py-5">
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error loading movies</div>;
+
+
+    return (    
+        <PageLayout>
+            <h1 className="text-3xl pl-8 absolute top-6">Search result - "{keyword}"</h1>
+            <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 justify-items-center py-5">
+            {isLoading && <div><h1 className="text-3xl">Searching for your movies...</h1></div>}
+            {error && <ErrorMessage error={error} />}
+
+            {!isLoading && !error &&
+            <>
             {data?.map((movie, idx) => (
-               <MoviePoster movie={movie} idx={idx}/>
+              <MoviePoster 
+                key={`${movie.id}-${idx}`}
+                movie={movie} 
+                idx={idx}
+                onClick={() => handleMovieClick(movie.id?.toString() || '')}/>
             ))}
+            </>}
         </div>
-        </>
+        </PageLayout>
     )
 }

@@ -4,14 +4,16 @@ import { IMAGE_URL } from "../hooks/config";
 interface MoviePosterProps {
   movie: Movie;
   idx: number;
+  onClick: () => void;
 }
 
-export default function MoviePoster({ movie, idx }: MoviePosterProps){
+export default function MoviePoster({ movie, idx, onClick }: MoviePosterProps){
 
     return (
     <div
         key={`${movie.id}-${idx}`}
         className="flex-shrink-0 w-[300px] mr-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded relative overflow-hidden flex justify-center items-center"
+        onClick={onClick}
         >
         {movie.poster_path !== null ? <img className=' w-full h-full' src={`${IMAGE_URL}${movie.poster_path}`}/> 
         : 
