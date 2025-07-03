@@ -1,27 +1,11 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-
-type Movie = {
-  id: number;
-  title: string;
-  original_title: string;
-  overview: string;
-  poster_path: string | null;
-  backdrop_path: string | null;
-  release_date: string;
-  genre_ids: number[];
-  adult: boolean;
-  original_language: string;
-  popularity: number;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-};
+import type { Crew } from '../types/Crew';
+import { IMAGE_URL } from '../hooks/config';
 
 type CarouselProps = {
-  data: Movie[];
+  data: Crew[];
   label: string;
 };
-
 
 
 
@@ -29,7 +13,7 @@ const TRANSITION_MS = 500;
 const SLIDE_WIDTH = 300;   
 const GAP = 16;           
 
-export default function Carousel({ data, label}:CarouselProps) {
+export default function CrewCarousel({ data, label}: CarouselProps) {
   const [visibleSlides, setVisibleSlides] = useState(4);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -38,6 +22,8 @@ export default function Carousel({ data, label}:CarouselProps) {
   const directionRef = useRef('right');
   const slideWidth = SLIDE_WIDTH + GAP;
 
+
+  
 
   useEffect(() => {
     const updateVisibleSlides = () => {
@@ -56,6 +42,7 @@ export default function Carousel({ data, label}:CarouselProps) {
     return () => window.removeEventListener('resize', updateVisibleSlides);
   }, []);
 
+  
 
   const cloneCount = visibleSlides * 2;
 
@@ -69,6 +56,7 @@ export default function Carousel({ data, label}:CarouselProps) {
   }, [data, cloneCount]);
 
   const totalSlides = duplicated.length;
+
 
 
   const handleMove = (dir: string) => {
@@ -116,25 +104,25 @@ export default function Carousel({ data, label}:CarouselProps) {
   }, [currentIndex, isTransitioning, cloneCount, data.length]);
 
   return (
-    <div className="w-full overflow-hidden px-10 pt-10">
+    <div className="w-full overflow-hidden px-6.5 sm:px-10 pt-10 flex justify-center flex-col items-center sm:block">
       <h2 className="text-2xl text-yellow-400 mb-4 text-shadow-[0_0_5px_#00ffff,0_0_10px_#00ffff,0_0_15px_#00ffff]">
         {label}
       </h2>
 
-      <div className="relative">
+      <div className="relative w-75 sm:w-full ">
         <button
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-full bg-black/50 text-white hover:bg-black/70"
+          className="absolute left-2 sm:-left-10 top-1/2 -translate-y-1/2 z-10 w-10 sm:h-full h-10 sm:rounded-none rounded-4xl bg-black/30 hover:bg-black text-white  flex justify-center items-center"
           onClick={() => handleMove('left')}
           aria-label="Previous slide"
         >
           ◀
         </button>
         <button
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-full bg-black/50 text-white hover:bg-black/70"
+          className="absolute right-2 sm:-right-10 top-1/2 -translate-y-1/2 z-10 w-10 sm:h-full h-10 sm:rounded-none rounded-4xl bg-black/30 hover:bg-black text-white "
           onClick={() => handleMove('right')}
           aria-label="Next slide"
         >
-          ▶
+      ▶
         </button>
 
         <div className="overflow-hidden">
@@ -147,16 +135,30 @@ export default function Carousel({ data, label}:CarouselProps) {
               transition: isTransitioning ? `transform ${TRANSITION_MS}ms ease` : 'none',
             }}
           >
-            {duplicated.map((movie, idx) => (
+            {duplicated.map((crew, idx) => (
               <div
-                key={`${movie.id}-${idx}`}
-                className="flex-shrink-0 w-[300px] mr-4 bg-amber-300 rounded relative overflow-hidden"
-              >
-                <div className="h-40 bg-gradient-to-br from-purple-500 to-pink-500" />
-                <h3 className="text-white absolute bottom-5 left-5 right-5 font-bold text-shadow-md">
-                  {movie.title}
-                </h3>
-              </div>
+                      key={`${crew.cast_id}-${idx}`}
+                      className="flex-shrink-0 w-[300px] mr-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded relative overflow-hidden flex justify-center items-center"
+                      >
+                      {crew.profile_path !== null ? <img className=' w-full h-full' src={`${IMAGE_URL}${crew.profile_path}`}/> 
+                      : 
+                      <svg 
+                      className="w-24 h-24 text-current fill-current"
+                      viewBox="0 0 24 24"
+                      >
+                      <polygon points="6 3 20 12 6 21 6 3"/>
+                      </svg>}
+                      
+                      <h3 className="text-white text-xl absolute bottom-10 w-full px-3 text-center font-bold text-shadow-md z-20">
+                          {crew.character}
+                      </h3>
+                      <h4 className='text-white  text-sm bg-black px-3 absolute bottom-5'>
+                        {crew.name}
+                      </h4>
+              
+                      <div className='absolute w-full h-15 bg-gradient-to-t from-black  bottom-0'/>
+                      <div className='absolute w-full h-20 bg-gradient-to-b from-black  top-0'/>
+                  </div>
             ))}
           </div>
         </div>

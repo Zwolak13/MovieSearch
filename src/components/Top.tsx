@@ -1,4 +1,17 @@
-export default function Top(){
+import type {SearchType} from '../types/SearchType'
+import { useState } from 'react';
+
+export default function Top({keyword, setKeyword}: SearchType){
+    const [input, setInput] = useState('');
+
+    function handleSubmit(){
+            setKeyword(input);
+            console.log(keyword);
+    };
+    function handleChange(e:React.ChangeEvent<HTMLInputElement>){
+        setInput(e.target.value);
+    }
+
 
     return (
         <>
@@ -10,6 +23,12 @@ export default function Top(){
             <div className=" z-20 flex items-center bg-black border-2 border-[#ff00ff] shadow-[0_0_20px_rgba(255,0,255,0.5)] rounded-md px-4">
                 <input
                     type="text"
+                    onChange={handleChange}
+                    onKeyDown={(e) =>{
+                        if(e.key === 'Enter'){
+                            handleSubmit();
+                        }
+                    }}
                     className="bg-black w-50 sm:w-full text-white flex-grow outline-none border-none"
                 />
                 <svg
@@ -22,7 +41,7 @@ export default function Top(){
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="lucide lucide-search-icon lucide-search text-white"
+                    className="text-white"
                 >
                     <path d="m21 21-4.34-4.34" />
                     <circle cx="11" cy="11" r="8"/>

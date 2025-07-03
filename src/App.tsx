@@ -1,17 +1,24 @@
 import Top from "./components/Top"
 import Body from "./components/Body"
-import { MovieProvider } from "./context/MovieContext"
+import Search from "./components/Search"
+
+import { useState } from "react";
 
 
 function App() {
 
 
+  const [moveId, setMovieId] = useState('');
+
   return (
     <>
-    <MovieProvider >
-      <Top />
-      <Body />
-    </MovieProvider>
+      {keyword === "" ? 
+      <>
+        <Top keyword={keyword} setKeyword={setKeyword}/>
+        <Body />
+      </>
+      : 
+        <Search keyword={keyword} setKeyword={setKeyword}/>}
     </>
   )
 }

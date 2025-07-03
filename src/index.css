@@ -61,6 +61,7 @@ body {
 }
 
 
+
 @layer utilities {
   .vhs-effect {
     position: relative;
@@ -82,4 +83,6 @@ body {
     );
     pointer-events: none;
   }
+
+
 }
