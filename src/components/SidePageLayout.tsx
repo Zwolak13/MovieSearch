@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 export default function PageLayout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
@@ -7,9 +8,11 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
     navigate(-1);
   }
     return (
-        <div className="w-full p-2 sm:p-10">
+      <>
+      <Header />
+      <div className="w-full p-2 sm:p-10">
             <svg 
-            className="w-12  h-12 text-white stroke-current stroke-2 absolute z-20 left-5  sm:left-10 top-5 sm:top-15"
+            className="w-12  h-12 text-white stroke-current stroke-2 absolute z-20 left-5  sm:left-15 top-25 sm:top-37"
             viewBox="0 0 24 24" 
             fill="none"
             strokeLinecap="round" 
@@ -23,5 +26,6 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
                             {children}
             </div>
         </div>
+      </>
     )
 }

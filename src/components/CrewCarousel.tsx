@@ -7,14 +7,11 @@ type CarouselProps = {
   label: string;
 };
 
+const TRANSITION_MS = 500;
+const SLIDE_WIDTH = 300;
+const GAP = 16;
 
-
-
-const TRANSITION_MS = 500; 
-const SLIDE_WIDTH = 300;   
-const GAP = 16;           
-
-export default function CrewCarousel({ data, label}: CarouselProps) {
+export default function CrewCarousel({ data, label }: CarouselProps) {
   const [visibleSlides, setVisibleSlides] = useState(4);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -22,7 +19,6 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const directionRef = useRef('right');
   const slideWidth = SLIDE_WIDTH + GAP;
-
 
   useEffect(() => {
     const updateVisibleSlides = () => {
@@ -33,7 +29,7 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
       else if (width < 1400) count = 3;
 
       setVisibleSlides(count);
-      setCurrentIndex(count * 2); 
+      setCurrentIndex(count * 2);
     };
 
     updateVisibleSlides();
@@ -41,16 +37,15 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
     return () => window.removeEventListener('resize', updateVisibleSlides);
   }, []);
 
-  
-
   const cloneCount = visibleSlides * 2;
 
-
   const duplicated = useMemo(() => {
+    if (data.length === 0) return [];
+    const safeCloneCount = Math.min(cloneCount, data.length);
     return [
-      ...data.slice(-cloneCount), 
-      ...data,                   
-      ...data.slice(0, cloneCount), 
+      ...data.slice(-safeCloneCount),
+      ...data,
+      ...data.slice(0, safeCloneCount),
     ];
   }, [data, cloneCount]);
 
@@ -63,7 +58,6 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
     setCurrentIndex((prev) => prev + (dir === 'right' ? visibleSlides : -visibleSlides));
   };
 
-
   const resetTo = (index: number) => {
     if (!trackRef.current) return;
 
@@ -72,7 +66,6 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
 
     requestAnimationFrame(() => {
       setCurrentIndex(index);
-
       requestAnimationFrame(() => {
         if (trackRef.current) {
           trackRef.current.style.transition = `transform ${TRANSITION_MS}ms ease`;
@@ -86,9 +79,8 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
 
     const timeout = setTimeout(() => {
       setIsTransitioning(false);
-      const min = cloneCount;       
-      const max = cloneCount + data.length; 
-
+      const min = cloneCount;
+      const max = cloneCount + data.length;
 
       if (currentIndex >= max - 1) {
         resetTo(min + (currentIndex - max));
@@ -106,37 +98,47 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
         {label}
       </h2>
 
-      <div className="relative w-75 sm:w-full ">
-        <button
-          className="absolute left-2 sm:-left-10 top-1/2 -translate-y-1/2 z-10 w-10 sm:h-full h-10 sm:rounded-none rounded-4xl bg-black/30 hover:bg-black text-white  flex justify-center items-center"
-          onClick={() => handleMove('left')}
-          aria-label="Previous slide"
-        >
-          ◀
-        </button>
-        <button
-          className="absolute right-2 sm:-right-10 top-1/2 -translate-y-1/2 z-10 w-10 sm:h-full h-10 sm:rounded-none rounded-4xl bg-black/30 hover:bg-black text-white "
-          onClick={() => handleMove('right')}
-          aria-label="Next slide"
-        >
-      ▶
-        </button>
-
-        <div>
-          <div
-            ref={trackRef}
-            className="flex"
-            style={{
-              width: `${slideWidth * totalSlides}px`,
-              transform: `translateX(-${currentIndex * slideWidth}px)`,
-              transition: isTransitioning ? `transform ${TRANSITION_MS}ms ease` : 'none',
-            }}
-          >
-            {duplicated.map((crew, idx) => (
-              <ActorCard crew={crew} idx={idx} />
+      <div className="relative w-75 sm:w-full">
+        {data.length <= visibleSlides ? (
+          <div className="flex gap-4 justify-center flex-wrap">
+            {data.map((crew, idx) => (
+              <ActorCard key={`${crew.id}-${idx}`} crew={crew} idx={idx} />
             ))}
           </div>
-        </div>
+        ) : (
+          <>
+            <button
+              className="absolute left-2 sm:-left-10 top-1/2 -translate-y-1/2 z-10 w-10 sm:h-full h-10 sm:rounded-none rounded-4xl bg-black/30 hover:bg-black text-white flex justify-center items-center"
+              onClick={() => handleMove('left')}
+              aria-label="Previous slide"
+            >
+              ◀
+            </button>
+            <button
+              className="absolute right-2 sm:-right-10 top-1/2 -translate-y-1/2 z-10 w-10 sm:h-full h-10 sm:rounded-none rounded-4xl bg-black/30 hover:bg-black text-white"
+              onClick={() => handleMove('right')}
+              aria-label="Next slide"
+            >
+              ▶
+            </button>
+
+            <div>
+              <div
+                ref={trackRef}
+                className="flex"
+                style={{
+                  width: `${slideWidth * totalSlides}px`,
+                  transform: `translateX(-${currentIndex * slideWidth}px)`,
+                  transition: isTransitioning ? `transform ${TRANSITION_MS}ms ease` : 'none',
+                }}
+              >
+                {duplicated.map((crew, idx) => (
+                  <ActorCard key={`${crew.id}-${idx}`} crew={crew} idx={idx} />
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

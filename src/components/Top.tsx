@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import YAMSPLogo from './YAMSPLogo';
 
 interface TopProps {
   onSearch: (keyword: string) => void;
@@ -23,7 +24,7 @@ export default function Top({ onSearch }: TopProps){
          style={{
     background: "radial-gradient(ellipse at center, rgba(255, 0, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 70%)",
             }}>
-            <h1 className="opacity-100 py-10 z-20 text-center ">Yet Another <br/> Movie Search</h1>
+            <YAMSPLogo />
             <div className=" z-20 flex items-center bg-black border-2 border-[#ff00ff] shadow-[0_0_20px_rgba(255,0,255,0.5)] rounded-md px-4">
                 <input
                     type="text"

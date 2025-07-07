@@ -23,17 +23,19 @@ export default function SingleMovieInfo({ movieId }: SingleMovieInfoProps){
         }).format(number);
     };
 
+    console.log(data)
+
     return (
         <PageLayout>
             {isLoading && <div><h1 className="text-3xl">Trying to find your movie...</h1></div>}
             {error && <ErrorMessage error={error} />}
             {!isLoading && !error && 
             <>
-                <div className="flex flex-col lg:flex-row sm:p-0 py-15 pb-0 items-center">
+                <div className="flex flex-col lg:flex-row sm:p-0 py-15 pb-0 items-center lg:items-start">
                     <SingleMoviePoster movie_path={data?.poster_path ?? ''} id={data?.id ?? 0} vote_average={data?.vote_average ?? 0}/>
                     <div className="w-full p-5">
                         <div className="flex flex-row justify-between">
-                            <div className="w-2/3 flex flex-col sm:p-0 pt-4">
+                            <div className="w-2/3 flex flex-col sm:p-0 pt-4 ">
                                 <span className="text-3xl pb-2">{data?.title}</span>
                                 <span className="pb-5">{data?.release_date}</span>
                                 <div className="flex flex-row flex-wrap w-85">
@@ -49,7 +51,7 @@ export default function SingleMovieInfo({ movieId }: SingleMovieInfoProps){
 
                                
                             </div>
-                            <div className="text-[12px] flex flex-col sm:p-0 pt-4 sm:text-sm ">
+                            <div className="text-[12px] flex flex-col sm:p-0 pt-4 sm:text-sm mb-10">
                                 <span>Budget: <br/>{formatCurrency(data?.budget || 0)}</span>
                                 <span>Box Office: <br/>{formatCurrency(data?.revenue || 0)}</span>
                             </div>

@@ -31,11 +31,15 @@ export default function ActorInfo({ actorId }: ActorInfoProps){
                       {data.profile_path !== null ? <img className=' w-full h-full' src={`${IMAGE_URL}${data.profile_path}`}/> 
                       : 
                       <svg 
-                      className="w-24 h-24 text-current fill-current"
-                      viewBox="0 0 24 24"
-                      >
-                      <polygon points="6 3 20 12 6 21 6 3"/>
-                      </svg>}
+                              className="w-24 h-24 text-current stroke-current stroke-2" 
+                              viewBox="0 0 24 24" 
+                              fill="none"
+                              strokeLinecap="round" 
+                              strokeLinejoin="round"
+                            >
+                              <circle cx="12" cy="8" r="5"/>
+                              <path d="M20 21a8 8 0 0 0-16 0"/>
+                            </svg>}
               
                       <div className='absolute w-full h-15 bg-gradient-to-t from-black  bottom-0'/>
                       <div className='absolute w-full h-20 bg-gradient-to-b from-black  top-0'/>

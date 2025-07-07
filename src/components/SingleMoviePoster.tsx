@@ -13,7 +13,7 @@ export default function SingleMoviePoster({ movie_path, id, vote_average }: Movi
         key={`${id}`}
         className="flex-shrink-0 w-[300px] h-110 mr-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded relative overflow-hidden flex justify-center items-center"
         >
-        {movie_path !== null ? 
+        {movie_path !== null && movie_path !== '' ? 
         <div>
             <img className=' w-full h-full' src={`${IMAGE_URL}${movie_path}`} />
             <svg 

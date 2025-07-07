@@ -1,0 +1,16 @@
+<svg width="150" height="40" viewBox="0 0 150 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="black" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="40" height="40" fill="black" stroke="#ff00ff" stroke-width="1" rx="8" filter="url(#shadow)"/>
+  <path d="M13 10v20l14-10z" fill="white"/>
+  <text x="50" y="28" font-family="Arial, sans-serif" font-size="18" font-weight="bold">
+    <tspan fill="#f87171">Y</tspan>
+    <tspan fill="#fb923c">A</tspan>
+    <tspan fill="#a78bfa">M</tspan>
+    <tspan fill="#60a5fa">S</tspan>
+    <tspan fill="#4ade80">P</tspan>
+  </text>
+</svg>
