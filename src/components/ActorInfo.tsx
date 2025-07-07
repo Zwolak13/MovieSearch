@@ -16,15 +16,16 @@ export default function ActorInfo({ actorId }: ActorInfoProps){
 
     const { data, isLoading, error } = useMovieCredits(actorId);
 
+        console.log(data);
     return (
         <PageLayout>
             {isLoading && <div><h1 className="text-3xl">Trying to find more info...</h1></div>}
             {error && <ErrorMessage error={error} />}
             {!isLoading && !error && data &&
             <>
-                <div className="flex flex-col md:flex-row md:p-0 py-15 pb-0 justify-center items-center">
+                <div className="flex flex-col md:flex-row md:p-0 py-15 pb-0 justify-start items-center md:items-start">
                     <div
-                      className="flex-shrink-0 w-[300px] h-110 mr-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded relative overflow-hidden flex justify-center items-center md:mx-0"
+                      className="flex-shrink-0 w-[300px] h-112 mr-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded relative overflow-hidden flex justify-center items-center md:mx-0"
 
                       >
                       {data.profile_path !== null ? <img className=' w-full h-full' src={`${IMAGE_URL}${data.profile_path}`}/> 
