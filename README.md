@@ -1,69 +1,69 @@
-# React + TypeScript + Vite
+# YAMSP Movie Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+HERE -> https://yet-another-movie-search-project.pages.dev
 
-Currently, two official plugins are available:
+A modern movie search application built with React and powered by The Movie Database (TMDB) API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎬 Features
 
-## Expanding the ESLint configuration
+- **Movie Search**: Search for movies by title with real-time results
+- **Movie Details**: View detailed information about movies including cast, crew, and ratings
+- **Actor Details**: Browse actor profiles with filmography and biographical information
+- **Responsive Design**: Fully responsive interface that works on all devices
+- **Modern UI**: Clean, modern design with smooth animations and transitions
+- **Fast Performance**: Optimized with React Query for efficient data fetching and caching
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Technologies Used
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React** - Frontend framework
+- **Tailwind CSS** - Utility-first CSS framework for styling
+- **React Query** - Data fetching and caching library
+- **React Router** - Client-side routing
+- **TMDB API** - Movie database and information source
+- **Vite** - Build tool and development server
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🚀 Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js (version 16 or higher)
+- npm or yarn package manager
+- TMDB API Token
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/yamsp-movie-search.git
+cd yamsp-movie-search
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
 ```
+
+3. Create a `.env` file in the root directory and add your TMDB API key:
+```env
+VITE_BASE_URL = 'https://api.themoviedb.org/3'
+VITE_IMAGE_URL = 'https://image.tmdb.org/t/p/original'
+VITE_TOKEN = 'your_api_token'
+```
+
+4. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+## 📱 Usage
+
+1. **Search Movies**: Use the search bar to find movies by title
+2. **View Movie Details**: Click on any movie to see detailed information
+3. **Browse Actor Profiles**: Click on actors to view their profiles and filmography
+4. **Browse Results**: Navigate through search results with pagination
+5. **Responsive Experience**: Use the app on any device - desktop, tablet, or mobile
+
