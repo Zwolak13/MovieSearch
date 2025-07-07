@@ -34,7 +34,7 @@ export default function Top({ onSearch }: TopProps){
                             handleSubmit();
                         }
                     }}
-                    className="bg-black w-50 sm:w-full text-white flex-grow outline-none border-none"
+                    className="bg-black w-50 sm:w-full text-white flex-grow outline-none border-none "
                 />
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -47,6 +47,7 @@ export default function Top({ onSearch }: TopProps){
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="text-white"
+                    onClick={() => handleSubmit()}
                 >
                     <path d="m21 21-4.34-4.34" />
                     <circle cx="11" cy="11" r="8"/>
