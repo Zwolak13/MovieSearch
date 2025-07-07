@@ -19,7 +19,7 @@ export default function Top({ onSearch }: TopProps){
 
     return (
         <>
-        <div className="w-[100vw] h-[70vh] text-5xl bg-black/30 flex justify-center items-center flex-col relative vhs-effect overflow-hidden"
+        <div className="w-[100vw] h-[70vh] text-5xl bg-black/30 flex justify-center items-center flex-col relative vhs-effect overflow-hidden sm px-2"
          style={{
     background: "radial-gradient(ellipse at center, rgba(255, 0, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 70%)",
             }}>

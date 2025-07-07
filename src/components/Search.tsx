@@ -23,8 +23,9 @@ export default function Search({keyword}: SearchProps){
 
     return (    
         <PageLayout>
-            <h1 className="text-3xl pl-8 absolute top-6">Search result - "{keyword}"</h1>
-            <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 justify-items-center py-5">
+          <div className="sm:p-0 py-25 ">
+            <h1 className="text-3xl sm:pl-0 absolute sm:top-6 top-15 sm:px-0 px-2 text-center">Search result - "{keyword}"</h1>
+            <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 justify-items-center py-5 sm:pt-0 pt-15">
             {isLoading && <div><h1 className="text-3xl">Searching for your movies...</h1></div>}
             {error && <ErrorMessage error={error} />}
 
@@ -39,6 +40,8 @@ export default function Search({keyword}: SearchProps){
             ))}
             </>}
         </div>
+          </div>
+            
         </PageLayout>
     )
 }

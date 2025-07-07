@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import type { Crew } from '../types/Crew';
-import { IMAGE_URL } from '../hooks/config';
+import ActorCard from './ActorCard';
 
 type CarouselProps = {
   data: Crew[];
   label: string;
 };
+
 
 
 
@@ -23,15 +24,13 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
   const slideWidth = SLIDE_WIDTH + GAP;
 
 
-  
-
   useEffect(() => {
     const updateVisibleSlides = () => {
       const width = window.innerWidth;
       let count = 4;
-      if (width < 640) count = 1;
-      else if (width < 768) count = 2;
-      else if (width < 1024) count = 3;
+      if (width < 945) count = 1;
+      else if (width < 1200) count = 2;
+      else if (width < 1400) count = 3;
 
       setVisibleSlides(count);
       setCurrentIndex(count * 2); 
@@ -56,8 +55,6 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
   }, [data, cloneCount]);
 
   const totalSlides = duplicated.length;
-
-
 
   const handleMove = (dir: string) => {
     if (isTransitioning) return;
@@ -104,7 +101,7 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
   }, [currentIndex, isTransitioning, cloneCount, data.length]);
 
   return (
-    <div className="w-full overflow-hidden px-6.5 sm:px-10 pt-10 flex justify-center flex-col items-center sm:block">
+    <div className="w-full overflow-hidden px-6.5 sm:px-10 sm:pt-10 pt-4 flex justify-center flex-col items-center sm:block">
       <h2 className="text-2xl text-yellow-400 mb-4 text-shadow-[0_0_5px_#00ffff,0_0_10px_#00ffff,0_0_15px_#00ffff]">
         {label}
       </h2>
@@ -125,7 +122,7 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
       ▶
         </button>
 
-        <div className="overflow-hidden">
+        <div>
           <div
             ref={trackRef}
             className="flex"
@@ -136,29 +133,7 @@ export default function CrewCarousel({ data, label}: CarouselProps) {
             }}
           >
             {duplicated.map((crew, idx) => (
-              <div
-                      key={`${crew.cast_id}-${idx}`}
-                      className="flex-shrink-0 w-[300px] mr-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded relative overflow-hidden flex justify-center items-center"
-                      >
-                      {crew.profile_path !== null ? <img className=' w-full h-full' src={`${IMAGE_URL}${crew.profile_path}`}/> 
-                      : 
-                      <svg 
-                      className="w-24 h-24 text-current fill-current"
-                      viewBox="0 0 24 24"
-                      >
-                      <polygon points="6 3 20 12 6 21 6 3"/>
-                      </svg>}
-                      
-                      <h3 className="text-white text-xl absolute bottom-10 w-full px-3 text-center font-bold text-shadow-md z-20">
-                          {crew.character}
-                      </h3>
-                      <h4 className='text-white  text-sm bg-black px-3 absolute bottom-5'>
-                        {crew.name}
-                      </h4>
-              
-                      <div className='absolute w-full h-15 bg-gradient-to-t from-black  bottom-0'/>
-                      <div className='absolute w-full h-20 bg-gradient-to-b from-black  top-0'/>
-                  </div>
+              <ActorCard crew={crew} idx={idx} />
             ))}
           </div>
         </div>

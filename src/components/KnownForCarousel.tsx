@@ -17,7 +17,7 @@ const TRANSITION_MS = 500;
 const SLIDE_WIDTH = 300;   
 const GAP = 16;           
 
-export default function PosterCarousel({ data, label, error, isLoading }:CarouselProps) {
+export default function KnownForCarousel({ data, label, error, isLoading }:CarouselProps) {
   const [visibleSlides, setVisibleSlides] = useState(4);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);

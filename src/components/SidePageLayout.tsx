@@ -7,9 +7,9 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
     navigate(-1);
   }
     return (
-        <div className="w-full p-10">
+        <div className="w-full p-2 sm:p-10">
             <svg 
-            className="w-12  h-12 text-white stroke-current stroke-2 absolute z-20 left-20 top-15"
+            className="w-12  h-12 text-white stroke-current stroke-2 absolute z-20 left-5  sm:left-10 top-5 sm:top-15"
             viewBox="0 0 24 24" 
             fill="none"
             strokeLinecap="round" 
@@ -19,7 +19,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
             <path d="M6 8L2 12L6 16"/>
             <path d="M2 12H22"/>
             </svg>
-            <div className="vhs-effect bg-black/50 w-full p-20">
+            <div className="vhs-effect bg-black/50 w-full p-2 sm:p-20">
                             {children}
             </div>
         </div>
