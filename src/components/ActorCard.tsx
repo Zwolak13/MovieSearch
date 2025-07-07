@@ -16,7 +16,8 @@ export default function ActorCard({crew, idx}: ActorCardProps){
     return(
         <div
                               key={`${crew.id}-${idx}`}
-                              className="flex-shrink-0 w-[300px] h-110 mr-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded relative overflow-hidden flex justify-center items-center"
+                              className="flex-shrink-0 w-[300px] h-110 mr-4 bg-gradient-to-br from-purple-500 to-pink-500 
+                              rounded relative overflow-hidden flex justify-center items-center transform transition-all duration-300 hover:-translate-y-5"
                               onClick={() => handleActorClick(crew.id)}
                               >
                               {crew.profile_path !== null ? <img className=' w-full h-full' src={`${IMAGE_URL}${crew.profile_path}`}/> 
